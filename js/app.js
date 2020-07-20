@@ -11,6 +11,9 @@ cargarEventListeners();
 function cargarEventListeners() {
   //Cuando se presiona agregar carrito
   cursos.addEventListener("click", comprarCurso);
+
+  //Cuando se eleimina un curso del carrito
+  carrito.addEventListener("click", eliminarCurso);
 }
 
 //Funciones
@@ -50,8 +53,17 @@ function insertarCarrito(curso) {
   <td>${curso.titulo}</td>
   <td>${curso.precio}</td>
   <td>
-  <a href="#" class="borrar-curso data-id="${curso.id}" >X<</a>
+  <a href="#" class="borrar-curso data-id="${curso.id}" >X</a>
   </td>
   `;
   listaCursos.appendChild(row);
+}
+
+//Elimina el curso del carrito en el DOM
+function eliminarCurso(e) {
+  e.preventDefault();
+  let curso;
+  if (e.target.classList.contains("borrar-curso")) {
+    e.target.parentElement.parentElement.remove();
+  }
 }
